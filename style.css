@@ -117,16 +117,92 @@ h2 {
 
 p { color: var(--muted); }
 
-.date-list > div {
+/* Important Dates — quiet editorial layout without cards or accent fills */
+.dates-panel { min-width: 0; }
+
+.date-groups {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 20px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
+  gap: 27px;
 }
 
-.date-list span { color: var(--muted); }
-.date-list strong { color: var(--text); }
+.date-group {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.date-group-header {
+  padding-bottom: 9px;
+  margin-bottom: 1px;
+  border-bottom: 1px solid #bec7d3;
+}
+
+.date-group h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: .98rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.date-items { margin: 0; }
+
+.date-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9edf2;
+}
+
+.date-item:last-child { border-bottom: 0; }
+
+.date-item dt {
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.date-item dd {
+  margin: 0;
+  color: var(--text);
+  font-size: .92rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* The event sits as a single, unobtrusive final row. */
+.date-group--event {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 14px;
+  padding-top: 15px;
+  border-top: 1px solid #bec7d3;
+}
+
+.date-group--event .date-group-header {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.symposium-date {
+  margin: 0;
+  color: var(--text);
+  font-size: .92rem;
+  font-weight: 700;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
 
 .topic-grid {
   display: grid;
@@ -431,10 +507,6 @@ code {
     gap: 20px;
   }
 
-  .date-list > div {
-    grid-template-columns: 1fr;
-    gap: 3px;
-  }
 
   .paper-grid article {
     padding: 18px;
@@ -515,11 +587,25 @@ code {
     padding: 40px 0;
   }
 
-  .date-list > div {
-    padding: 12px 0;
-  }
+  .date-item { gap: 8px; }
+
+  .date-item dt,
+  .date-item dd { font-size: .87rem; }
+
+  .date-group--event { gap: 8px; }
+  .symposium-date { font-size: .87rem; }
 
   .footer-bottom {
     font-size: .82rem;
   }
+}
+
+@media (max-width: 350px) {
+  .date-item,
+  .date-group--event {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .date-item dd,
+  .symposium-date { text-align: left; }
 }
